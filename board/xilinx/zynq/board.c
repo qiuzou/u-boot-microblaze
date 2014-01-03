@@ -55,8 +55,6 @@ int board_init(void)
 	}
 #endif
 
-	icache_enable();
-
 #ifdef CONFIG_FPGA
 	fpga_init();
 	fpga_add(fpga_xilinx, &fpga);
