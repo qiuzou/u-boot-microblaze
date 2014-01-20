@@ -160,6 +160,8 @@ static void init_ddr_clocks(void)
 	clks[dci_clk].frequency = DIV_ROUND_CLOSEST(
 			DIV_ROUND_CLOSEST(prate, div0), div1);
 	clks[dci_clk].name = "dci";
+
+	gd->bd->bi_ddr_freq = clks[dci_clk].frequency;
 }
 
 static void init_cpu_clocks(void)
@@ -591,6 +593,9 @@ int set_cpu_clk_info(void)
 	init_cpu_clocks();
 	init_periph_clocks();
 	init_aper_clocks();
+
+	gd->bd->bi_arm_freq = gd->cpu_clk;
+	gd->bd->bi_dsp_freq = 0;
 
 	return 0;
 }
