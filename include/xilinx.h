@@ -41,7 +41,14 @@ typedef struct {		/* typedef xilinx_desc */
 	void *iface_fns;	/* interface function table */
 	int cookie;		/* implementation specific cookie */
 	char *name;		/* device name in bitstream */
+	struct xilinx_fpga_op *operations; /* operations */
 } xilinx_desc;			/* end, typedef xilinx_desc */
+
+struct xilinx_fpga_op {
+	int (*load)(xilinx_desc *, const void *, size_t);
+	int (*dump)(xilinx_desc *, const void *, size_t);
+	int (*info)(xilinx_desc *);
+};
 
 /* Generic Xilinx Functions
  *********************************************************************/
